@@ -1,0 +1,7 @@
+from app import app
+# Importamos TODO para que SQLAlchemy sepa qué construir
+from app.models.models import db, Usuario, Zona, Amenidad, Cabana, Reserva 
+
+with app.app_context():
+    db.create_all()
+    print("¡Las 7 tablas se construyeron con éxito en Render!")
