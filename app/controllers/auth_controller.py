@@ -2,6 +2,8 @@ from flask import jsonify, request
 
 from app.services.auth_service import registrar_usuario
 from app.services.auth_service import iniciar_sesion
+from app.middlewares.auth_middleware import validar_token
+
 
 
 def register():
@@ -66,3 +68,30 @@ def login():
     )
 
     return jsonify(resultado), 200
+
+def me():
+
+    payload, error = validar_token()
+
+    if error:
+        return jsonify({
+            "error": "Unauthorized",
+            "mensaje": error
+        }), 401
+
+    usuario_id = payload["sub"]
+
+    # aquí posteriormente buscamos al usuario
+
+def protected():
+    payload, error = validar_token()
+
+    if error:
+        return jsonify({
+            "error": error
+        }), 401
+
+    return jsonify({
+        "mensaje": "Acceso autorizado",
+        "usuario": payload
+    }), 200
