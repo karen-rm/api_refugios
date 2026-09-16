@@ -4,7 +4,8 @@ from app.middlewares.auth_middleware import validar_token, validar_rol
 from app.controllers.cabana_controller import (
     crear_cabana,
     obtener_cabanas,
-    actualizar_cabana
+    actualizar_cabana,
+    eliminar_cabana
 )
 
 
@@ -45,3 +46,8 @@ def obtener_cabanas_route():
 @cabana_bp.route('/api/cabana/<int:id_cabana>', methods=['PUT'])
 def actualizar_cabana_route(id_cabana):
     return actualizar_cabana(id_cabana)
+
+@cabana_bp.route('/api/cabana/<int:id_cabana>', methods=['DELETE'])
+def eliminar_cabana_route(id_cabana):
+    return eliminar_cabana(id_cabana)
+

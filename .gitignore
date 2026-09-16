@@ -1,3 +1,5 @@
 .env
 crear_admin.py
 agregar_imagen.py
+__pycache__/
+*.pyc

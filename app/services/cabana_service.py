@@ -1,7 +1,8 @@
 from app.repositories.cabana_repository import (
     crear_cabana,
     obtener_cabanas,
-    actualizar_cabana
+    actualizar_cabana,
+    eliminar_cabana
 )
 
 
@@ -62,6 +63,16 @@ def modificar_cabana(
         permite_ninos,
         url_imagen
     )
+
+    if not cabana:
+        raise ValueError("La cabaña no existe")
+
+    return cabana
+
+
+def borrar_cabana(id_cabana):
+
+    cabana = eliminar_cabana(id_cabana)
 
     if not cabana:
         raise ValueError("La cabaña no existe")

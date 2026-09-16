@@ -4,7 +4,8 @@ from app.middlewares.auth_middleware import validar_token, validar_rol
 from app.services.cabana_service import (
     registrar_cabana,
     listar_cabanas,
-    modificar_cabana
+    modificar_cabana,
+    borrar_cabana
 )
 
 
@@ -151,3 +152,35 @@ def actualizar_cabana(id_cabana):
         return {
             "error": str(error)
         }, 400
+
+
+def eliminar_cabana(id_cabana):
+
+    payload, error = validar_token()
+
+    if error:
+        return {
+            "error": error
+        }, 401
+
+    autorizado, error = validar_rol(
+        payload,
+        "administrador"
+    )
+
+    if not autorizado:
+        return {
+            "error": error
+        }, 403
+
+    try:
+        borrar_cabana(id_cabana)
+
+        return {
+            "mensaje": "Cabaña eliminada correctamente"
+        }, 200
+
+    except ValueError as error:
+        return {
+            "error": str(error)
+        }, 404

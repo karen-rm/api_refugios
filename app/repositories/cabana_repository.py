@@ -57,3 +57,14 @@ def actualizar_cabana(
     db.session.commit()
 
     return cabana
+
+def eliminar_cabana(id_cabana):
+    cabana = Cabana.query.get(id_cabana)
+
+    if not cabana:
+        return None
+
+    db.session.delete(cabana)
+    db.session.commit()
+
+    return cabana
