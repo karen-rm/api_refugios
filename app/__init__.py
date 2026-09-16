@@ -29,4 +29,7 @@ def create_app():
     from app.routes.auth_routes import auth_bp
     app.register_blueprint(auth_bp)
 
+    from app.routes.cabana_routes import cabana_bp
+    app.register_blueprint(cabana_bp)
+
     return app

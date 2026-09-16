@@ -40,7 +40,10 @@ def iniciar_sesion(correo, contrasena):
     ):
         raise ValueError("Credenciales inválidas")
 
-    token = crear_token(usuario.id_usuario)
+    token = crear_token(
+        usuario.id_usuario,
+        usuario.rol
+    )
 
     return {
         "token": token,

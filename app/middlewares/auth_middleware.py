@@ -33,3 +33,11 @@ def validar_token():
 
     except ValueError:
         return None, "Formato de autorización inválido"
+    
+
+def validar_rol(payload, rol_requerido):
+
+    if payload.get("rol") != rol_requerido:
+        return False, "No tienes permisos para realizar esta acción"
+
+    return True, None
