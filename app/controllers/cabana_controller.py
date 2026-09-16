@@ -1,7 +1,7 @@
 from flask import request
 
 from app.middlewares.auth_middleware import validar_token, validar_rol
-from app.services.cabana_service import registrar_cabana
+from app.services.cabana_service import registrar_cabana, listar_cabanas
 
 
 def crear_cabana():
@@ -59,3 +59,30 @@ def crear_cabana():
         return {
             "error": str(error)
         }, 400
+
+def obtener_cabanas():
+
+    payload, error = validar_token()
+
+    if error:
+        return {
+            "error": error
+        }, 401
+
+    cabanas = listar_cabanas()
+
+    return {
+        "cabanas": [
+            {
+                "id_cabana": cabana.id_cabana,
+                "nombre": cabana.nombre,
+                "descripcion": cabana.descripcion,
+                "estado": cabana.estado,
+                "direccion": cabana.direccion,
+                "max_capacidad": cabana.max_capacidad,
+                "permite_ninos": cabana.permite_ninos,
+                "id_propietario": cabana.id_propietario
+            }
+            for cabana in cabanas
+        ]
+    }, 200

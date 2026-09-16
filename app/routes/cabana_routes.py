@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-from app.controllers.cabana_controller import crear_cabana
+from app.controllers.cabana_controller import crear_cabana, obtener_cabanas
 from app.middlewares.auth_middleware import validar_token, validar_rol
 
 
@@ -33,3 +33,7 @@ def prueba_admin():
 @cabana_bp.route('/api/cabana', methods=['POST'])
 def crear_cabana_route():
     return crear_cabana()
+
+@cabana_bp.route('/api/cabana', methods=['GET'])
+def obtener_cabanas_route():
+    return obtener_cabanas()

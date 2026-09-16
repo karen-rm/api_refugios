@@ -1,4 +1,4 @@
-from app.repositories.cabana_repository import crear_cabana
+from app.repositories.cabana_repository import crear_cabana, obtener_cabanas
 
 
 def registrar_cabana(
@@ -25,3 +25,6 @@ def registrar_cabana(
         permite_ninos,
         id_propietario
     )
+
+def listar_cabanas():
+    return obtener_cabanas()
