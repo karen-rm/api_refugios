@@ -8,6 +8,7 @@ def registrar_cabana(
     direccion,
     max_capacidad,
     permite_ninos,
+    url_imagen,
     id_propietario
 ):
     if not nombre:
@@ -23,8 +24,10 @@ def registrar_cabana(
         direccion,
         max_capacidad,
         permite_ninos,
+        url_imagen,
         id_propietario
     )
+
 
 def listar_cabanas():
     return obtener_cabanas()

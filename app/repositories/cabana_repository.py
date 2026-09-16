@@ -8,6 +8,7 @@ def crear_cabana(
     direccion,
     max_capacidad,
     permite_ninos,
+    url_imagen,
     id_propietario
 ):
     cabana = Cabana(
@@ -17,6 +18,7 @@ def crear_cabana(
         direccion=direccion,
         max_capacidad=max_capacidad,
         permite_ninos=permite_ninos,
+        url_imagen=url_imagen,
         id_propietario=id_propietario
     )
 
@@ -24,6 +26,7 @@ def crear_cabana(
     db.session.commit()
 
     return cabana
+
 
 def obtener_cabanas():
     return Cabana.query.all()

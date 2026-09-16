@@ -36,6 +36,7 @@ class Amenidad(db.Model):
 
 class Cabana(db.Model):
     __tablename__ = 'cabanas'
+
     id_cabana = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nombre = db.Column(db.String(150), nullable=False)
     descripcion = db.Column(db.Text)
@@ -43,9 +44,12 @@ class Cabana(db.Model):
     direccion = db.Column(db.String(255))
     max_capacidad = db.Column(db.Integer, nullable=False)
     permite_ninos = db.Column(db.Boolean, default=True)
-    
-    id_propietario = db.Column(db.Integer, db.ForeignKey('usuarios.id_usuario', ondelete='CASCADE'), nullable=False)
-
+    url_imagen = db.Column(db.String(500), nullable=True)
+    id_propietario = db.Column(
+        db.Integer,
+        db.ForeignKey('usuarios.id_usuario', ondelete='CASCADE'),
+        nullable=False
+    )
 class Reserva(db.Model):
     __tablename__ = 'reservas'
     id_reserva = db.Column(db.Integer, primary_key=True, autoincrement=True)

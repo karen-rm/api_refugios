@@ -32,27 +32,29 @@ def crear_cabana():
 
     try:
         cabana = registrar_cabana(
-            datos.get("nombre"),
-            datos.get("descripcion"),
-            datos.get("estado"),
-            datos.get("direccion"),
-            datos.get("max_capacidad"),
-            datos.get("permite_ninos", True),
-            payload["sub"]
+          datos.get("nombre"),
+          datos.get("descripcion"),
+          datos.get("estado"),
+          datos.get("direccion"),
+          datos.get("max_capacidad"),
+          datos.get("permite_ninos", True),
+          datos.get("url_imagen"),
+          payload["sub"]
         )
 
         return {
-            "mensaje": "Cabaña creada correctamente",
-            "cabana": {
-                "id_cabana": cabana.id_cabana,
-                "nombre": cabana.nombre,
-                "descripcion": cabana.descripcion,
-                "estado": cabana.estado,
-                "direccion": cabana.direccion,
-                "max_capacidad": cabana.max_capacidad,
-                "permite_ninos": cabana.permite_ninos,
-                "id_propietario": cabana.id_propietario
-            }
+          "mensaje": "Cabaña creada correctamente",
+          "cabana": {
+            "id_cabana": cabana.id_cabana,
+            "nombre": cabana.nombre,
+            "descripcion": cabana.descripcion,
+            "estado": cabana.estado,
+            "direccion": cabana.direccion,
+            "max_capacidad": cabana.max_capacidad,
+            "permite_ninos": cabana.permite_ninos,
+            "url_imagen": cabana.url_imagen,
+            "id_propietario": cabana.id_propietario
+          }
         }, 201
 
     except ValueError as error:
@@ -81,6 +83,7 @@ def obtener_cabanas():
                 "direccion": cabana.direccion,
                 "max_capacidad": cabana.max_capacidad,
                 "permite_ninos": cabana.permite_ninos,
+                "url_imagen": cabana.url_imagen,
                 "id_propietario": cabana.id_propietario
             }
             for cabana in cabanas
