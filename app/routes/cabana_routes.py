@@ -1,7 +1,11 @@
 from flask import Blueprint
 
-from app.controllers.cabana_controller import crear_cabana, obtener_cabanas
 from app.middlewares.auth_middleware import validar_token, validar_rol
+from app.controllers.cabana_controller import (
+    crear_cabana,
+    obtener_cabanas,
+    actualizar_cabana
+)
 
 
 cabana_bp = Blueprint('cabana', __name__)
@@ -37,3 +41,7 @@ def crear_cabana_route():
 @cabana_bp.route('/api/cabana', methods=['GET'])
 def obtener_cabanas_route():
     return obtener_cabanas()
+
+@cabana_bp.route('/api/cabana/<int:id_cabana>', methods=['PUT'])
+def actualizar_cabana_route(id_cabana):
+    return actualizar_cabana(id_cabana)
